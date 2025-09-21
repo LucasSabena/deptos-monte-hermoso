@@ -1,0 +1,58 @@
+{
+  "project": "Deptos Monte Hermoso",
+  "palette": {
+    "primary": "#A8DADC",      // Un azul verdoso pastel, como el mar calmo
+    "secondary": "#F1DABF",    // Un beige arena cálido
+    "accent": "#E6A4B4",       // Un rosa coral suave para botones y llamados a la acción
+    "background": "#FDF8F0",   // Un blanco hueso muy claro, casi arena blanca
+    "text_primary": "#4A4A4A", // Un gris oscuro para el texto principal, más suave que el negro puro
+    "text_secondary": "#7E7E7E"// Un gris más claro para textos secundarios
+  },
+  "typography": {
+    "font_family_headings": "'Satoshi', sans-serif",
+    "font_family_body": "'Satoshi', sans-serif",
+    "base_font_size": "16px",
+    "headings": {
+      "h1": {
+        "size": "2.5rem",  // 40px
+        "weight": 700
+      },
+      "h2": {
+        "size": "2rem",    // 32px
+        "weight": 700
+      },
+      "h3": {
+        "size": "1.5rem",  // 24px
+        "weight": 500
+      }
+    },
+    "body": {
+      "size": "1rem",      // 16px
+      "weight": 400,
+      "line_height": "1.6"
+    }
+  },
+  "spacing": {
+    "xs": "4px",
+    "sm": "8px",
+    "md": "16px",
+    "lg": "32px",
+    "xl": "64px"
+  },
+  "components": {
+    "button": {
+      "padding": "12px 24px",
+      "border_radius": "8px",
+      "font_weight": 700,
+      "text_transform": "uppercase",
+      "box_shadow": "0 4px 6px rgba(0, 0, 0, 0.1)",
+      "transition": "transform 0.2s ease-in-out"
+    },
+    "card": {
+      "background_color": "#FFFFFF",
+      "border_radius": "12px",
+      "box_shadow": "0 8px 16px rgba(0, 0, 0, 0.08)",
+      "padding": "24px"
+    }
+  }
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deptos Monte Hermoso</title>
+    
+    <!-- Satoshi Font -->
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+    
+    <!-- Scripts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#A8DADC',
+              secondary: '#F1DABF',
+              accent: '#E6A4B4',
+              background: '#FDF8F0',
+              'text-primary': '#4A4A4A',
+              'text-secondary': '#7E7E7E',
+              'card-bg': '#FFFFFF',
+            },
+            fontFamily: {
+              sans: ['Satoshi', 'sans-serif'],
+              headings: ['Satoshi', 'sans-serif'],
+            },
+            spacing: {
+                'xs': '4px',
+                'sm': '8px',
+                'md': '16px',
+                'lg': '32px',
+                'xl': '64px',
+            }
+          }
+        }
+      }
+    </script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
+    <script src="https://unpkg.com/framer-motion@10/dist/framer-motion.umd.js"></script>
+    <script src="https://unpkg.com/lucide-react@0.323.0/dist/lucide-react.js"></script>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.16",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.544.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-background text-text-primary font-sans">
+    <div id="root"></div>
+    <script type="text/babel" src="/index.tsx"></script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
