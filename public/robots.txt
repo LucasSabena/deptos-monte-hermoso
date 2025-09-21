@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# Block access to admin areas (if any)
+Disallow: /admin/
+Disallow: /api/
+
+# Allow access to CSS, JS, and image files
+Allow: *.css
+Allow: *.js
+Allow: *.png
+Allow: *.jpg
+Allow: *.jpeg
+Allow: *.gif
+Allow: *.svg
+Allow: *.ico
+
+# Sitemap
+Sitemap: https://deptos-monte-hermoso.vercel.app/sitemap.xml

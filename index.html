@@ -2,14 +2,47 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Deptos Monte Hermoso</title>
-    
-    <!-- Satoshi Font -->
+
+    <!-- SEO Meta Tags -->
+    <title>Departamentos en Alquiler Monte Hermoso | Deptos Monte Hermoso</title>
+    <meta name="description" content="Alquila departamentos por día en Monte Hermoso. Brava y Agreste II: confort, tranquilidad y salida directa al mar. Precios accesibles, ubicación perfecta.">
+    <meta name="keywords" content="departamentos monte hermoso, alquiler por dia monte hermoso, deptos monte hermoso, alquiler temporada monte hermoso, departamentos playa monte hermoso, brava monte hermoso, agreste ii monte hermoso">
+    <meta name="author" content="Deptos Monte Hermoso">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Spanish">
+    <meta name="revisit-after" content="7 days">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://deptos-monte-hermoso.vercel.app/">
+    <meta property="og:title" content="Departamentos en Alquiler Monte Hermoso | Deptos Monte Hermoso">
+    <meta property="og:description" content="Alquila departamentos por día en Monte Hermoso. Brava y Agreste II: confort, tranquilidad y salida directa al mar.">
+    <meta property="og:image" content="https://deptos-monte-hermoso.vercel.app/images/og-image.jpg">
+    <meta property="og:site_name" content="Deptos Monte Hermoso">
+    <meta property="og:locale" content="es_AR">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://deptos-monte-hermoso.vercel.app/">
+    <meta property="twitter:title" content="Departamentos en Alquiler Monte Hermoso | Deptos Monte Hermoso">
+    <meta property="twitter:description" content="Alquila departamentos por día en Monte Hermoso. Brava y Agreste II: confort, tranquilidad y salida directa al mar.">
+    <meta property="twitter:image" content="https://deptos-monte-hermoso.vercel.app/images/og-image.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://deptos-monte-hermoso.vercel.app/">
+
+    <!-- Fonts -->
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
-    
-    <!-- Scripts -->
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -39,27 +72,82 @@
         }
       }
     </script>
+
+    <!-- Scripts -->
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
     <script src="https://unpkg.com/framer-motion@10/dist/framer-motion.umd.js"></script>
     <script src="https://unpkg.com/lucide-react@0.323.0/dist/lucide-react.js"></script>
-<script type="importmap">
-{
-  "imports": {
-    "react/": "https://aistudiocdn.com/react@^19.1.1/",
-    "react": "https://aistudiocdn.com/react@^19.1.1",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
-    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.16",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.544.0"
-  }
-}
-</script>
-<link rel="stylesheet" href="/index.css">
+
+    <script type="importmap">
+    {
+      "imports": {
+        "react/": "https://aistudiocdn.com/react@^19.1.1/",
+        "react": "https://aistudiocdn.com/react@^19.1.1",
+        "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+        "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.16",
+        "lucide-react": "https://aistudiocdn.com/lucide-react@^0.544.0"
+      }
+    }
+    </script>
+
+    <link rel="stylesheet" href="/index.css">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "RealEstateAgent",
+      "name": "Deptos Monte Hermoso",
+      "description": "Alquiler de departamentos por día en Monte Hermoso",
+      "url": "https://deptos-monte-hermoso.vercel.app/",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Monte Hermoso",
+        "addressRegion": "Buenos Aires",
+        "addressCountry": "AR"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Departamentos en Alquiler",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Accommodation",
+              "name": "Departamento Brava",
+              "description": "Confort, tranquilidad a pasos del mar",
+              "address": "Juan Manuel de Rosas 142, Monte Hermoso, Buenos Aires",
+              "numberOfRooms": 2,
+              "occupancy": {
+                "@type": "QuantitativeValue",
+                "value": 4
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Accommodation",
+              "name": "Departamento Agreste II",
+              "description": "Tranquilidad y privacidad con salida directa al mar",
+              "address": "Río Iguazú 104, Monte Hermoso, Buenos Aires",
+              "numberOfRooms": 2,
+              "occupancy": {
+                "@type": "QuantitativeValue",
+                "value": 4
+              }
+            }
+          }
+        ]
+      }
+    }
+    </script>
 </head>
 <body class="bg-background text-text-primary font-sans">
     <div id="root"></div>
     <script type="text/babel" src="/index.tsx"></script>
-<script type="module" src="/index.tsx"></script>
+    <script type="module" src="/index.tsx"></script>
 </body>
 </html>
