@@ -1,7 +1,7 @@
 {
   "name": "Deptos Monte Hermoso",
   "short_name": "Deptos MH",
-  "description": "Alquiler de departamentos por día en Monte Hermoso. Departamentos equipados con todas las comodidades para tu estadía perfecta.",
+  "description": "Alquiler de departamentos por dia en Monte Hermoso",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
