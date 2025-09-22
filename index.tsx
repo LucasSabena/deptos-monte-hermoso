@@ -11,6 +11,7 @@ import {
     Wifi, Sofa, Tv, Wind, CookingPot, Waves, Car, Building, X,
     Volume2, VolumeX, Maximize, Play, Pause
 } from 'lucide-react';
+import { Analytics } from '@vercel/analytics/react';
 
 
 // --- Icon Mapping ---
@@ -860,6 +861,7 @@ const App = () => {
                     <Route path="/:id" element={<DetailPageWrapper />} />
                 </Routes>
             </AnimatePresence>
+            <Analytics />
         </React.Fragment>
     );
 };
