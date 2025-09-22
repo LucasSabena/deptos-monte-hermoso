@@ -16,17 +16,11 @@ import {
 // --- Icon Mapping ---
 
 const WhatsAppIcon = (props) => (
-  <svg
-    viewBox="0 0 32 32"
-    xmlns="http://www.w3.org/2000/svg"
-    aria-hidden="true"
-    role="img"
-    preserveAspectRatio="xMidYMid meet"
-    fill="currentColor"
+  <img
+    src="/whatsapp-icon.svg"
+    alt="WhatsApp"
     {...props}
-  >
-    <path d="M16.004 0C7.175 0 0 7.176 0 16c0 2.236.592 4.354 1.638 6.29L.08 31.914l9.83-2.584A15.943 15.943 0 0016.004 32C24.824 32 32 24.824 32 16S24.824 0 16.004 0zm8.787 22.446c-.374.99-1.848 1.898-2.665 1.944-.817.046-1.843.278-4.046-1.002-2.676-1.564-4.395-4.345-4.526-4.52-.13-.174-1.063-1.415-1.063-2.703s.675-1.89.967-2.157c.292-.267 1.063-.417 1.063-.417s.292-.13.292-.292c0-.162-.13-.292-.13-.292-.162-.162-1.063-2.55-1.063-2.55s-.13-.292-.967-.162c-.837.13-1.89 1.063-2.42 1.635-.53.572-1.063 1.635-1.063 1.635s-.13.162-.39.078c-.26-.084-.967-.572-1.89-1.635-.923-1.063-1.635-2.236-1.635-2.236s-.13-.292-.967-.13c-.837.162-1.635.967-1.635 1.635 0 .668.13 1.063.13 1.063s.13.162.13.39c0 .23-.13.39-.13.39-.162.162-1.635 2.42-1.635 5.33 0 2.91 1.635 5.33 1.635 5.33s.162.39.39.39c.23 0 .39-.162.39-.162.162-.162 2.236-2.616 2.616-2.616s.162-.13.39-.13c.23 0 .39.13.39.13.162.162 1.635 1.635 3.14 2.29 1.505.655 3.14.655 3.14.655s.39.13.655.13c.265 0 .39-.13.39-.13.162-.162.39-.39.39-.39.23-.23.39-.39.39-.39z"/>
-  </svg>
+  />
 );
 
 const iconMap = {
@@ -66,27 +60,34 @@ const IconWrapper = ({ icon: IconComponent, text }) => (
 
 // --- Page Section Components (HomePage) ---
 
-const Header = () => (
-    <motion.header
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: 'easeOut' }}
-        className="fixed top-0 left-0 right-0 z-50 p-4 md:px-8 bg-background/80 backdrop-blur-sm"
-    >
-        <div className="container mx-auto flex justify-between items-center">
-            <h1 className="text-xl font-bold text-text-primary tracking-wider">
-                Monte Hermoso
-            </h1>
-            <Button className="!py-2 !px-4 !text-sm">
-                <div className="flex items-center gap-2">
-                    <WhatsAppIcon className="w-5 h-5" />
-                    <span className="hidden md:inline">Escribir</span>
-                    <span className="inline md:hidden">Info</span>
-                </div>
-            </Button>
-        </div>
-    </motion.header>
-);
+const Header = () => {
+    const handleWhatsAppClick = () => {
+        const message = encodeURIComponent('Vi los departamentos en la web, me gustaría saber más información');
+        window.open(`https://api.whatsapp.com/send?phone=5492916480599&text=${message}`, '_blank');
+    };
+
+    return (
+        <motion.header
+            initial={{ y: -100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+            className="fixed top-0 left-0 right-0 z-50 p-4 md:px-8 bg-background/80 backdrop-blur-sm"
+        >
+            <div className="container mx-auto flex justify-between items-center">
+                <h1 className="text-xl font-bold text-text-primary tracking-wider">
+                    Monte Hermoso
+                </h1>
+                <Button className="!py-2 !px-4 !text-sm" onClick={handleWhatsAppClick}>
+                    <div className="flex items-center gap-2">
+                        <WhatsAppIcon className="w-5 h-5" />
+                        <span className="hidden md:inline">Escribir</span>
+                        <span className="inline md:hidden">Info</span>
+                    </div>
+                </Button>
+            </div>
+        </motion.header>
+    );
+};
 
 const Hero = () => (
     <section className="h-screen min-h-[600px] flex items-center justify-center text-center text-white relative overflow-hidden">
@@ -521,7 +522,7 @@ const MediaGallery = ({ images, videos, deptoName }) => {
                         <div className="relative w-full aspect-video rounded-lg overflow-hidden shadow-lg bg-black group">
                             <video
                                 ref={playerRef}
-                                className="w-full h-full object-cover"
+                                className="w-full h-full object-cover md:object-contain"
                                 src={videos[0]}
                                 muted={isMuted}
                                 loop
@@ -587,13 +588,15 @@ const MediaGallery = ({ images, videos, deptoName }) => {
                                         >
                                             <Maximize size={20} />
                                         </button>
-                                        <button
-                                            onClick={closeVideo}
-                                            className="text-white hover:text-red-400 transition-colors"
-                                            title="Cerrar video"
-                                        >
-                                            <X size={20} />
-                                        </button>
+                                        {isPlaying && (
+                                            <button
+                                                onClick={closeVideo}
+                                                className="text-white hover:text-red-400 transition-colors"
+                                                title="Cerrar video"
+                                            >
+                                                <X size={20} />
+                                            </button>
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -693,7 +696,7 @@ const OtherDepartmentPromo = ({ currentDepto, onSelectDepto }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-24 bg-card-bg rounded-xl shadow-lg shadow-secondary/30 overflow-hidden flex flex-col group max-w-md mx-auto"
+            className="mt-12 bg-card-bg rounded-xl shadow-lg shadow-secondary/30 overflow-hidden flex flex-col group max-w-md mx-auto"
         >
             <div className="overflow-hidden">
                 <motion.img
@@ -789,7 +792,7 @@ const DetailPage = ({ depto, onBack, onSelectDepto }) => {
                         <h2 className="text-3xl md:text-4xl font-bold font-headings text-center text-text-primary mb-12">Ubicación</h2>
                         <MapComponent embedSrc={depto.location.embedSrc} name={depto.name} />
                     </div>
-                    <div className="mt-16 md:mt-24 text-center">
+                    <div className="mt-12 md:mt-24 text-center">
                         <h2 className="text-2xl md:text-3xl font-bold font-headings text-text-primary mb-8">También te puede interesar</h2>
                         <OtherDepartmentPromo currentDepto={depto} onSelectDepto={onSelectDepto} />
                     </div>
@@ -836,6 +839,7 @@ const DetailPageWrapper = () => {
     };
 
     const handleSelectDepto = (selectedDepto) => {
+        window.scrollTo(0, 0);
         navigate(`/${selectedDepto.id}`);
     };
 
