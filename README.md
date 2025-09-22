@@ -1,110 +1,130 @@
 # Deptos Monte Hermoso
 
-Una página web moderna y minimalista para promocionar dos departamentos en alquiler en Monte Hermoso, Argentina.
+# Deptos Monte Hermoso
 
-## 🚀 Características
+Una moderna Single Page Application (SPA) desarrollada en React para promocionar departamentos de alquiler en Monte Hermoso. El sitio incluye páginas informativas completas para huéspedes con toda la información necesaria para su estadía.
 
-- **Diseño minimalista y responsivo** - Optimizado para mobile-first
-- **SPA con React** - Navegación fluida sin recargas
-- **URLs específicas** - Cada departamento tiene su propio link para compartir
-- **Galería de imágenes** - Carrusel deslizable con lightbox
-- **Videos personalizados** - Reproductor custom con controles
-- **Mapa integrado** - Google Maps embebido
-- **Animaciones suaves** - Framer Motion para transiciones elegantes
+## ✨ Características Principales
 
-## 🛠️ Tecnologías
+### 🏠 Páginas de Departamentos
+- **Vista Principal**: Listado de departamentos con galería de imágenes
+- **Página de Detalle**: Información completa, amenities, ubicación y galería interactiva
+- **Información para Huéspedes**: Página dedicada con toda la información práctica
+
+### 📋 Información para Huéspedes Incluye:
+- **WiFi**: Nombre de red y contraseña
+- **Electrodomésticos**: Instrucciones detalladas para TV, aire acondicionado, pava eléctrica, etc.
+- **Inventario Completo**: Lista detallada de utensilios, ropa de cama, elementos de limpieza
+- **Lugares Cercanos**: Restaurantes, supermercados, atracciones con distancias y horarios
+- **Contactos**: Anfitrión y números de emergencia
+- **Mapa Interactivo**: Ubicación exacta del departamento
+- **Acceso Rápido**: Botones para acciones frecuentes
+
+### 🎨 Diseño y UX
+- **Mobile-First**: Completamente responsivo
+- **Animaciones Suaves**: Implementadas con Framer Motion
+- **Design System**: Colores y tipografías consistentes
+- **Navegación Intuitiva**: Fácil acceso entre páginas
+
+## � Tecnologías Utilizadas
 
 - **React 19** - Framework principal
 - **Vite** - Build tool y dev server
+- **React Router DOM** - Navegación y rutas
+- **Framer Motion** - Animaciones y transiciones
+- **Tailwind CSS** - Estilos y responsive design
+- **Lucide React** - Iconografía
 - **TypeScript** - Tipado estático
-- **Tailwind CSS** - Estilos utilitarios
-- **Framer Motion** - Animaciones
-- **React Router** - Routing
-- **Radix UI Icons** - Iconografía
 
-## 📦 Instalación y uso
-
-1. **Clona el repositorio:**
-   ```bash
-   git clone https://github.com/LucasSabena/deptos-monte-hermoso.git
-   cd deptos-monte-hermoso
-   ```
-
-2. **Instala dependencias:**
-   ```bash
-   npm install
-   ```
-
-3. **Ejecuta en desarrollo:**
-   ```bash
-   npm run dev
-   ```
-
-4. **Build para producción:**
-   ```bash
-   npm run build
-   ```
-
-5. **Preview del build:**
-   ```bash
-   npm run preview
-   ```
-
-## 🌐 Deploy en Vercel
-
-Este proyecto está configurado para deploy automático en Vercel.
-
-### Deploy manual:
-1. Conecta tu repo de GitHub a Vercel
-2. Vercel detectará automáticamente la configuración de Vite
-3. El deploy se hará automáticamente en cada push
-
-### URLs del proyecto:
-- **Home:** `/`
-- **Departamento Brava:** `/brava`
-- **Departamento Agreste II:** `/agreste-ii`
-
-## 📁 Estructura del proyecto
+## � Estructura del Proyecto
 
 ```
 deptos-monte-hermoso/
-├── public/
 ├── src/
-│   ├── cms.js              # Datos de los departamentos
-│   ├── index.tsx           # Componentes y lógica principal
-│   └── ...
-├── package.json
-├── vite.config.ts
-├── tailwind.config.js
-└── README.md
+│   ├── components/
+│   │   └── guest-info/          # Componentes para páginas de huéspedes
+│   │       ├── InfoSection.jsx   # Sección de información reutilizable
+│   │       ├── InfoItem.jsx      # Item individual de información
+│   │       ├── QuickAccess.jsx   # Accesos rápidos
+│   │       ├── ContactCard.jsx   # Tarjetas de contacto
+│   │       ├── NearbyPlaces.jsx  # Lugares cercanos
+│   │       └── InventoryList.jsx # Listas de inventario
+│   ├── data/
+│   │   └── guestInfoData.js      # Datos específicos por departamento
+│   ├── GuestInfoPage.jsx         # Página principal de información
+│   └── styles.css               # Estilos con Tailwind
+├── cms.js                       # Datos de departamentos
+├── index.tsx                    # Aplicación principal
+├── design_system.json          # Tokens de diseño
+└── tailwind.config.js          # Configuración de Tailwind
 ```
 
-## 🎨 Diseño
+## 🛣️ Rutas Disponibles
 
-- **Paleta de colores:** Azul verdoso, beige arena, rosa coral
-- **Tipografía:** Satoshi
-- **Estilo:** Minimalista, moderno, enfocado en fotografías
+- `/` - Página principal con listado de departamentos
+- `/:id` - Página de detalle del departamento (ej: `/depto-brava`)
+- `/:id/info` - Información para huéspedes (ej: `/depto-brava/info`)
 
-## 📱 Características técnicas
+## 🏃‍♂️ Desarrollo
 
-- **SEO básico** con React Helmet
-- **Accesibilidad** con etiquetas semánticas
-- **Performance** optimizada con Vite
-- **PWA ready** (se puede extender)
+### Instalación
+```bash
+npm install
+```
 
-## 🤝 Contribuir
+### Desarrollo Local
+```bash
+npm run dev
+```
 
-Si quieres contribuir:
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/nueva-funcionalidad`)
-3. Commit tus cambios (`git commit -am 'Agrega nueva funcionalidad'`)
-4. Push a la rama (`git push origin feature/nueva-funcionalidad`)
-5. Abre un Pull Request
+### Build para Producción
+```bash
+npm run build
+```
 
-## 📄 Licencia
+## 📱 Funcionalidades de las Páginas de Huéspedes
 
-Este proyecto es privado y propiedad de sus creadores.
+### Accesos Rápidos
+- **WiFi**: Muestra credenciales al instante
+- **Contacto**: Abre WhatsApp con mensaje pre-cargado
+- **Ubicación**: Abre Google Maps
+- **Emergencia**: Muestra números importantes
+
+### Secciones Informativas
+1. **WiFi**: Red, contraseña y velocidad
+2. **Electrodomésticos**: Instrucciones y tips para cada aparato
+3. **Inventario**: Organizado por cocina, dormitorio y general
+4. **Contactos**: Anfitrión y emergencias con botones de acción directa
+5. **Lugares Cercanos**: Con descripción, distancia y horarios
+6. **Mapa**: Ubicación exacta integrada
+
+### Diseño Responsive
+- **Mobile**: Diseño optimizado para pantallas pequeñas
+- **Tablet**: Adaptación para pantallas medianas
+- **Desktop**: Aprovechamiento completo del espacio
+
+## 🎯 Beneficios para los Huéspedes
+
+- **Información Centralizada**: Todo lo necesario en un solo lugar
+- **Fácil Acceso**: URLs directas para compartir
+- **Siempre Disponible**: Acceso 24/7 sin necesidad de llamar
+- **Actualizable**: Información siempre al día
+- **Multiidioma Ready**: Estructura preparada para internacionalización
+
+## 🔧 Personalización
+
+Para agregar nuevos departamentos:
+
+1. **Actualizar `cms.js`** con los datos del nuevo departamento
+2. **Agregar entrada en `guestInfoData.js`** con toda la información específica
+3. **Las rutas se generan automáticamente** basadas en el ID del departamento
+
+## � Contacto
+
+Para consultas sobre el proyecto o los departamentos:
+- **WhatsApp**: +54 2916 48-0599
+- **Ubicación**: Monte Hermoso, Buenos Aires, Argentina
 
 ---
 
-**Desarrollado con ❤️ para Monte Hermoso**
+Desarrollado con ❤️ para brindar la mejor experiencia a nuestros huéspedes.

@@ -2,15 +2,16 @@
 // These replace the UMD global references and fix all reported errors.
 import React, { useState, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route, useNavigate, useParams } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate, useParams, useLocation } from 'react-router-dom';
 // FIX: Add Variants to framer-motion import to fix typing errors.
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { departments } from './cms.js';
 import { 
     Users, BedDouble, ChevronRight, ChevronLeft, 
     Wifi, Sofa, Tv, Wind, CookingPot, Waves, Car, Building, X,
-    Volume2, VolumeX, Maximize, Play, Pause
+    Volume2, VolumeX, Maximize, Play, Pause, Info
 } from 'lucide-react';
+import GuestInfoPage from './src/GuestInfoPage.jsx';
 import { Analytics } from '@vercel/analytics/react';
 
 
@@ -756,6 +757,8 @@ const MapComponent = ({ embedSrc, name }) => {
 };
 
 const DetailPage = ({ depto, onBack, onSelectDepto }) => {
+    const navigate = useNavigate();
+    
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
@@ -856,13 +859,17 @@ const DetailPageWrapper = () => {
 };
 
 const App = () => {
+    const location = useLocation();
+    const isInfoPage = location.pathname.includes('/info');
+
     return (
         <React.Fragment>
-            <Header />
+            {!isInfoPage && <Header />}
             <AnimatePresence mode="wait">
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/:id" element={<DetailPageWrapper />} />
+                    <Route path="/:id/info" element={<GuestInfoPage />} />
                 </Routes>
             </AnimatePresence>
             <Analytics />

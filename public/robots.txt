@@ -5,6 +5,9 @@ Allow: /
 Disallow: /admin/
 Disallow: /api/
 
+# Block access to guest info pages (private links only)
+Disallow: */info
+
 # Allow access to CSS, JS, and image files
 Allow: *.css
 Allow: *.js

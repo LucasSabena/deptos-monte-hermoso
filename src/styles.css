@@ -1,0 +1,64 @@
+/* Custom CSS para el proyecto */
+@import url('https://fonts.googleapis.com/css2?family=Satoshi:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Scrollbar personalizado */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Estilos para el slider de volumen */
+.slider::-webkit-slider-thumb {
+  appearance: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: #A8DADC;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: #A8DADC;
+  cursor: pointer;
+  border: none;
+}
+
+/* Animaciones suaves globales */
+* {
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Base styles usando el design system */
+body {
+  font-family: 'Satoshi', sans-serif;
+  background-color: #FDF8F0;
+  color: #4A4A4A;
+  line-height: 1.6;
+}
+
+/* Componentes personalizados */
+.btn-primary {
+  @apply bg-accent text-text-primary font-bold uppercase py-3 px-6 rounded-lg shadow-lg shadow-accent/30;
+  @apply hover:scale-105 hover:-translate-y-1 transition-all duration-200;
+}
+
+.card {
+  @apply bg-white rounded-xl shadow-lg shadow-secondary/20 p-6;
+}
+
+.input-focus {
+  @apply focus:ring-2 focus:ring-primary focus:border-primary outline-none;
+}
