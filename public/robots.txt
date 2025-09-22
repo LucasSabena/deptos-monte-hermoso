@@ -16,4 +16,4 @@ Allow: *.svg
 Allow: *.ico
 
 # Sitemap
-Sitemap: https://deptos-monte-hermoso.vercel.app/sitemap.xml
+Sitemap: https://www.deptosmontehermoso.com.ar/sitemap.xml

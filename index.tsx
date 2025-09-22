@@ -8,7 +8,8 @@ import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { departments } from './cms.js';
 import { 
     Users, BedDouble, ChevronRight, ChevronLeft, 
-    Wifi, Sofa, Tv, Wind, CookingPot, Waves, Car, Building, X
+    Wifi, Sofa, Tv, Wind, CookingPot, Waves, Car, Building, X,
+    Volume2, VolumeX, Maximize, Play, Pause
 } from 'lucide-react';
 
 
@@ -24,10 +25,7 @@ const WhatsAppIcon = (props) => (
     fill="currentColor"
     {...props}
   >
-    <path
-      d="M16.2,8.1c-4.3,0-7.8,3.5-7.8,7.8c0,1.4,0.4,2.8,1.1,4l-1.2,4.2l4.4-1.2c1.2,0.6,2.5,1,3.9,1c4.3,0,7.8-3.5,7.8-7.8 C24,11.6,20.5,8.1,16.2,8.1z M19.4,18.4c-0.2,0.4-0.8,0.7-1.4,0.9c-0.6,0.2-1.2,0.2-1.9-0.1c-0.7-0.3-1.6-0.7-2.7-1.6 c-1.5-1.1-2.5-2.6-2.6-2.8c-0.2-0.2-0.4-0.6-0.4-0.9c0-0.3,0.1-0.5,0.3-0.7c0.2-0.2,0.4-0.3,0.5-0.3s0.3,0,0.5-0.1 c0.2,0,0.3-0.1,0.5-0.2c0.2,0,0.2,0,0.3,0.1c0.1,0.1,0.2,0.3,0.3,0.5s0.2,0.4,0.2,0.5c0,0.1,0.1,0.3-0.1,0.5c-0.1,0.2-0.2,0.3-0.3,0.4 c-0.1,0.1-0.2,0.2-0.1,0.4c0.1,0.2,0.5,0.8,1.1,1.4c0.8,0.8,1.5,1.1,1.7,1.2c0.2,0.1,0.4,0.1,0.5-0.1c0.1-0.1,0.5-0.6,0.6-0.8 c0.2-0.2,0.3-0.2,0.5-0.1c0.2,0.1,1.1,0.5,1.3,0.6c0.2,0.1,0.3,0.2,0.4,0.3C19.7,17.9,19.6,18.1,19.4,18.4z"
-      fill="currentColor"
-    />
+    <path d="M16.004 0C7.175 0 0 7.176 0 16c0 2.236.592 4.354 1.638 6.29L.08 31.914l9.83-2.584A15.943 15.943 0 0016.004 32C24.824 32 32 24.824 32 16S24.824 0 16.004 0zm8.787 22.446c-.374.99-1.848 1.898-2.665 1.944-.817.046-1.843.278-4.046-1.002-2.676-1.564-4.395-4.345-4.526-4.52-.13-.174-1.063-1.415-1.063-2.703s.675-1.89.967-2.157c.292-.267 1.063-.417 1.063-.417s.292-.13.292-.292c0-.162-.13-.292-.13-.292-.162-.162-1.063-2.55-1.063-2.55s-.13-.292-.967-.162c-.837.13-1.89 1.063-2.42 1.635-.53.572-1.063 1.635-1.063 1.635s-.13.162-.39.078c-.26-.084-.967-.572-1.89-1.635-.923-1.063-1.635-2.236-1.635-2.236s-.13-.292-.967-.13c-.837.162-1.635.967-1.635 1.635 0 .668.13 1.063.13 1.063s.13.162.13.39c0 .23-.13.39-.13.39-.162.162-1.635 2.42-1.635 5.33 0 2.91 1.635 5.33 1.635 5.33s.162.39.39.39c.23 0 .39-.162.39-.162.162-.162 2.236-2.616 2.616-2.616s.162-.13.39-.13c.23 0 .39.13.39.13.162.162 1.635 1.635 3.14 2.29 1.505.655 3.14.655 3.14.655s.39.13.655.13c.265 0 .39-.13.39-.13.162-.162.39-.39.39-.39.23-.23.39-.39.39-.39z"/>
   </svg>
 );
 
@@ -247,7 +245,7 @@ const ContactFooter = () => (
                 viewport={{ once: true, amount: 0.5 }}
                 transition={{ duration: 0.5, delay: 0.4, type: 'spring' }}
             >
-                <Button className="!text-lg !py-4 !px-8">
+                <Button className="!text-lg !py-4 !px-8" onClick={() => window.open('https://api.whatsapp.com/send?phone=5492916480599', '_blank')}>
                     <div className="flex items-center gap-3">
                         <WhatsAppIcon className="w-6 h-6" />
                         Escribir
@@ -359,7 +357,9 @@ const MediaGallery = ({ images, videos, deptoName }) => {
     const [[page, direction], setPage] = useState([0, 0]);
     const [isLightboxOpen, setLightboxOpen] = useState(false);
     const [isPlaying, setIsPlaying] = useState(false);
-    const videoRef = useRef(null);
+    const [isMuted, setIsMuted] = useState(true);
+    const [volume, setVolume] = useState(0.8);
+    const playerRef = useRef(null);
 
     useEffect(() => {
         if (isLightboxOpen) {
@@ -396,14 +396,46 @@ const MediaGallery = ({ images, videos, deptoName }) => {
     const closeLightbox = () => setLightboxOpen(false);
 
     const togglePlay = () => {
-        if (videoRef.current) {
+        if (playerRef.current) {
             if (isPlaying) {
-                videoRef.current.pause();
+                playerRef.current.pause();
             } else {
-                videoRef.current.play();
+                playerRef.current.play();
             }
-            setIsPlaying(!isPlaying);
         }
+    };
+
+    const toggleMute = () => {
+        if (playerRef.current) {
+            playerRef.current.muted = !isMuted;
+            setIsMuted(!isMuted);
+        }
+    };
+
+    const handleVolumeChange = (e) => {
+        const newVolume = parseFloat(e.target.value);
+        setVolume(newVolume);
+        if (playerRef.current) {
+            playerRef.current.volume = newVolume;
+            playerRef.current.muted = false;
+        }
+        setIsMuted(false);
+    };
+
+    const handleFullscreen = () => {
+        if (playerRef.current) {
+            if (playerRef.current.requestFullscreen) {
+                playerRef.current.requestFullscreen();
+            }
+        }
+    };
+
+    const closeVideo = () => {
+        if (playerRef.current) {
+            playerRef.current.pause();
+        }
+        setIsPlaying(false);
+        setActiveTab('fotos');
     };
 
     return (
@@ -488,15 +520,17 @@ const MediaGallery = ({ images, videos, deptoName }) => {
                     ) : (
                         <div className="relative w-full aspect-video rounded-lg overflow-hidden shadow-lg bg-black group">
                             <video
-                                ref={videoRef}
-                                className="w-full h-full object-contain"
+                                ref={playerRef}
+                                className="w-full h-full object-cover"
                                 src={videos[0]}
-                                muted
+                                muted={isMuted}
                                 loop
                                 playsInline
                                 onPlay={() => setIsPlaying(true)}
                                 onPause={() => setIsPlaying(false)}
                             />
+                            
+                            {/* Custom Controls Overlay */}
                             <div className="absolute inset-0 flex items-center justify-center">
                                 <motion.button
                                     onClick={togglePlay}
@@ -505,15 +539,63 @@ const MediaGallery = ({ images, videos, deptoName }) => {
                                     className="bg-primary/80 text-text-primary rounded-full p-4 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
                                 >
                                     {isPlaying ? (
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                            <path d="M6 4h4v16H6V4zM14 4h4v16h-4V4z"/>
-                                        </svg>
+                                        <Pause size={24} />
                                     ) : (
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                            <path d="M8 5v14l11-7z"/>
-                                        </svg>
+                                        <Play size={24} />
                                     )}
                                 </motion.button>
+                            </div>
+
+                            {/* Control Bar */}
+                            <div className="absolute bottom-0 left-0 right-0 bg-black/60 p-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <div className="flex items-center justify-between">
+                                    <div className="flex items-center space-x-3">
+                                        <button
+                                            onClick={togglePlay}
+                                            className="text-white hover:text-primary transition-colors"
+                                            title={isPlaying ? "Pausar" : "Reproducir"}
+                                        >
+                                            {isPlaying ? <Pause size={20} /> : <Play size={20} />}
+                                        </button>
+
+                                        <div className="flex items-center space-x-2">
+                                            <button
+                                                onClick={toggleMute}
+                                                className="text-white hover:text-primary transition-colors"
+                                                title={isMuted ? "Activar sonido" : "Silenciar"}
+                                            >
+                                                {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
+                                            </button>
+                                            <input
+                                                type="range"
+                                                min="0"
+                                                max="1"
+                                                step="0.1"
+                                                value={isMuted ? 0 : volume}
+                                                onChange={handleVolumeChange}
+                                                className="w-16 h-1 bg-white/30 rounded-lg appearance-none cursor-pointer slider"
+                                                title="Volumen"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="flex items-center space-x-2">
+                                        <button
+                                            onClick={handleFullscreen}
+                                            className="text-white hover:text-primary transition-colors"
+                                            title="Pantalla completa"
+                                        >
+                                            <Maximize size={20} />
+                                        </button>
+                                        <button
+                                            onClick={closeVideo}
+                                            className="text-white hover:text-red-400 transition-colors"
+                                            title="Cerrar video"
+                                        >
+                                            <X size={20} />
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     )}
@@ -571,22 +653,36 @@ const AmenitiesList = ({ amenities }) => {
     );
 };
 
-const FloatingCTA = () => (
-    <motion.div
-        initial={{ y: 150 }}
-        animate={{ y: 0 }}
-        transition={{ type: 'spring', stiffness: 100, damping: 20, delay: 0.5 }}
-        className="fixed bottom-4 right-4 z-40"
-    >
-        <Button className="!py-3 !px-5 !rounded-full shadow-xl shadow-accent/40">
-            <div className="flex items-center gap-2">
-                <WhatsAppIcon className="w-5 h-5" />
-                <span className="hidden md:inline">Escribir por este depto</span>
-                <span className="inline md:hidden">Escribir</span>
-            </div>
-        </Button>
-    </motion.div>
-);
+const FloatingCTA = ({ deptoName = null }) => {
+    const getWhatsAppMessage = () => {
+        if (deptoName) {
+            return `Vi el ${deptoName} en la web, me gustaría saber más información`;
+        }
+        return 'Vi los departamentos en la web, me gustaría saber más información';
+    };
+
+    const handleWhatsAppClick = () => {
+        const message = encodeURIComponent(getWhatsAppMessage());
+        window.open(`https://api.whatsapp.com/send?phone=5492916480599&text=${message}`, '_blank');
+    };
+
+    return (
+        <motion.div
+            initial={{ y: 150 }}
+            animate={{ y: 0 }}
+            transition={{ type: 'spring', stiffness: 100, damping: 20, delay: 0.5 }}
+            className="fixed bottom-4 right-4 z-40"
+        >
+            <Button className="!py-3 !px-5 !rounded-full shadow-xl shadow-accent/40" onClick={handleWhatsAppClick}>
+                <div className="flex items-center gap-2">
+                    <WhatsAppIcon className="w-5 h-5" />
+                    <span className="hidden md:inline">Escribir por este depto</span>
+                    <span className="inline md:hidden">Escribir</span>
+                </div>
+            </Button>
+        </motion.div>
+    );
+};
 
 const OtherDepartmentPromo = ({ currentDepto, onSelectDepto }) => {
     const otherDepto = departments.find(d => d.id !== currentDepto.id);
@@ -700,7 +796,7 @@ const DetailPage = ({ depto, onBack, onSelectDepto }) => {
                 </div>
             </div>
             <ContactFooter />
-            <FloatingCTA />
+            <FloatingCTA deptoName={depto.name} />
         </motion.section>
     );
 };
