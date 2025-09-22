@@ -23,15 +23,23 @@ export default defineConfig(({ mode }) => {
           output: {
             manualChunks: {
               vendor: ['react', 'react-dom'],
-              ui: ['framer-motion', 'lucide-react']
+              ui: ['framer-motion', 'lucide-react'],
+              router: ['react-router-dom'],
+              analytics: ['@vercel/analytics']
             }
           }
         },
         sourcemap: false,
-        chunkSizeWarningLimit: 1000
+        chunkSizeWarningLimit: 1000,
+        reportCompressedSize: false,
+        assetsInlineLimit: 4096
       },
       esbuild: {
-        drop: mode === 'production' ? ['console', 'debugger'] : []
+        drop: mode === 'production' ? ['console', 'debugger'] : [],
+        legalComments: 'none'
+      },
+      optimizeDeps: {
+        include: ['react', 'react-dom', 'react-router-dom', 'framer-motion', 'lucide-react', '@vercel/analytics']
       }
     };
 });

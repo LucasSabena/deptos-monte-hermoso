@@ -99,6 +99,8 @@ const Hero = () => (
             loop
             muted
             playsInline
+            preload="metadata"
+            poster="https://res.cloudinary.com/dzey3hyfq/image/upload/c_fill,w_1920,h_1080,q_auto,f_auto/v1758490074/Dron_monte_hermoso_ylxuur.jpg"
         />
         <div className="bg-black/40 absolute inset-0"></div>
         <div className="relative z-10 p-4">
@@ -155,6 +157,8 @@ const DepartmentCard = ({ depto, index }) => {
                     transition={{ duration: 0.3 }}
                     fetchPriority={index === 0 ? "high" : "auto"}
                     loading={index === 0 ? "eager" : "lazy"}
+                    decoding="async"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
             </div>
             <div className="p-6 flex flex-col flex-grow">
