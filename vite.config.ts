@@ -14,6 +14,24 @@ export default defineConfig(({ mode }) => {
         alias: {
           '@': path.resolve(__dirname, '.'),
         }
+      },
+      build: {
+        target: 'esnext',
+        minify: 'esbuild',
+        cssMinify: true,
+        rollupOptions: {
+          output: {
+            manualChunks: {
+              vendor: ['react', 'react-dom'],
+              ui: ['framer-motion', 'lucide-react']
+            }
+          }
+        },
+        sourcemap: false,
+        chunkSizeWarningLimit: 1000
+      },
+      esbuild: {
+        drop: mode === 'production' ? ['console', 'debugger'] : []
       }
     };
 });

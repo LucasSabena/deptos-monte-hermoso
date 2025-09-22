@@ -38,7 +38,7 @@ const iconMap = {
 
 // --- Helper Components ---
 
-const Button = ({ children, className = '', onClick }) => (
+const Button = React.memo<{ children: React.ReactNode; className?: string; onClick?: () => void }>(({ children, className = '', onClick }) => (
     <motion.button
         onClick={onClick}
         whileHover={{ scale: 1.05, y: -2 }}
@@ -48,14 +48,14 @@ const Button = ({ children, className = '', onClick }) => (
     >
         {children}
     </motion.button>
-);
+));
 
-const IconWrapper = ({ icon: IconComponent, text }) => (
+const IconWrapper = React.memo<{ icon: React.ComponentType<any>; text: string }>(({ icon: IconComponent, text }) => (
     <div className="flex items-center space-x-2 text-text-secondary">
         <IconComponent className="w-5 h-5 text-primary" />
         <span className="text-sm font-medium">{text}</span>
     </div>
-);
+));
 
 
 // --- Page Section Components (HomePage) ---
@@ -152,7 +152,8 @@ const DepartmentCard = ({ depto, index }) => {
                     className="w-full h-56 object-cover"
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.3 }}
-                    fetchpriority={index === 0 ? "high" : "auto"}
+                    fetchPriority={index === 0 ? "high" : "auto"}
+                    loading={index === 0 ? "eager" : "lazy"}
                 />
             </div>
             <div className="p-6 flex flex-col flex-grow">
@@ -326,13 +327,14 @@ const Lightbox = ({ images, activeIndex, onClose, onNavigate }) => (
                     className={`w-20 h-14 object-cover rounded cursor-pointer transition-all ${
                         activeIndex === idx ? 'ring-2 ring-white scale-105' : 'opacity-60 hover:opacity-100'
                     }`}
+                    loading="lazy"
                 />
             ))}
         </div>
     </motion.div>
 );
 
-const TabButton = ({ name, activeTab, onClick }) => {
+const TabButton = React.memo<{ name: string; activeTab: string; onClick: () => void }>(({ name, activeTab, onClick }) => {
     const isActive = activeTab === name.toLowerCase();
     return (
         <button 
@@ -351,7 +353,7 @@ const TabButton = ({ name, activeTab, onClick }) => {
             )}
         </button>
     );
-};
+});
 
 
 const MediaGallery = ({ images, videos, deptoName }) => {
@@ -510,7 +512,7 @@ const MediaGallery = ({ images, videos, deptoName }) => {
                                             className={`flex-shrink-0 cursor-pointer rounded-md overflow-hidden ring-2 transition-all ${imageIndex === idx ? 'ring-primary' : 'ring-transparent'}`}
                                             onClick={() => paginateTo(idx)}
                                         >
-                                            <img src={img} alt={`Thumbnail ${idx + 1}`} className="w-20 h-14 object-cover" />
+                                            <img src={img} alt={`Thumbnail ${idx + 1}`} className="w-20 h-14 object-cover" loading="lazy" />
                                         </motion.div>
                                     ))}
                                 </div>
@@ -706,6 +708,7 @@ const OtherDepartmentPromo = ({ currentDepto, onSelectDepto }) => {
                     className="w-full h-48 object-cover"
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.3 }}
+                    loading="lazy"
                 />
             </div>
             <div className="p-6 flex flex-col flex-grow">
