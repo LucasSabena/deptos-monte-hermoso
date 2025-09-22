@@ -152,6 +152,7 @@ const DepartmentCard = ({ depto, index }) => {
                     className="w-full h-56 object-cover"
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.3 }}
+                    fetchpriority={index === 0 ? "high" : "auto"}
                 />
             </div>
             <div className="p-6 flex flex-col flex-grow">
