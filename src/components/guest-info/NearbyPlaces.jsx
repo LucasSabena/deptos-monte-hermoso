@@ -4,8 +4,12 @@ import { MapPin, ExternalLink } from 'lucide-react';
 
 const NearbyPlaces = ({ places }) => {
   const handleDirections = (place) => {
-    const query = encodeURIComponent(`${place.name}, Monte Hermoso`);
-    window.open(`https://www.google.com/maps/search/${query}`, '_blank');
+    if (place.url) {
+      window.open(place.url, '_blank');
+    } else {
+      const query = encodeURIComponent(`${place.name}, Monte Hermoso`);
+      window.open(`https://www.google.com/maps/search/${query}`, '_blank');
+    }
   };
 
   const containerStyle = {

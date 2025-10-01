@@ -9,8 +9,12 @@ import { departments } from './cms.js';
 import { 
     Users, BedDouble, ChevronRight, ChevronLeft, 
     Wifi, Sofa, Tv, Wind, CookingPot, Waves, Car, Building, X,
-    Volume2, VolumeX, Maximize, Play, Pause, Info
+    Volume2, VolumeX, Maximize, Play, Pause, WavesLadder, Flame, WashingMachine, Grid3x3
 } from 'lucide-react';
+import Lightbox from 'yet-another-react-lightbox';
+import Thumbnails from 'yet-another-react-lightbox/plugins/thumbnails';
+import 'yet-another-react-lightbox/styles.css';
+import 'yet-another-react-lightbox/plugins/thumbnails.css';
 import GuestInfoPage from './src/GuestInfoPage.jsx';
 import { Analytics } from '@vercel/analytics/react';
 
@@ -35,6 +39,9 @@ const iconMap = {
     Waves: (props) => <Waves {...props} />,
     Car: (props) => <Car {...props} />,
     Building: (props) => <Building {...props} />,
+    Grill: (props) => <Flame {...props} />,
+    WavesLadder: (props) => <WavesLadder {...props} />,
+    Washing: (props) => <WashingMachine {...props} />,
 };
 
 
@@ -144,10 +151,17 @@ const DepartmentCard = ({ depto, index }) => {
         }
     };
     
+    const handleCardClick = () => {
+        navigate(`/${depto.id}`);
+    };
+    
     return (
         <motion.div
             variants={cardVariants}
-            className="bg-card-bg rounded-xl shadow-lg shadow-secondary/30 overflow-hidden flex flex-col group"
+            onClick={handleCardClick}
+            className="bg-card-bg rounded-xl shadow-lg shadow-secondary/30 overflow-hidden flex flex-col group cursor-pointer"
+            whileHover={{ y: -8 }}
+            transition={{ duration: 0.3 }}
         >
             <div className="overflow-hidden">
                 <motion.img
@@ -170,14 +184,9 @@ const DepartmentCard = ({ depto, index }) => {
                     <IconWrapper icon={BedDouble} text={depto.features[0]} />
                 </div>
                 <div className="mt-auto">
-                     <motion.button
-                        onClick={() => navigate(`/${depto.id}`)}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="w-full bg-primary text-text-primary font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors duration-300 group-hover:bg-accent"
-                    >
+                     <div className="w-full bg-primary text-text-primary font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors duration-300 group-hover:bg-accent">
                         Ver más detalles <ChevronRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-                    </motion.button>
+                    </div>
                 </div>
             </div>
         </motion.div>
@@ -285,61 +294,6 @@ const slideVariants: Variants = {
     }),
 };
 
-const Lightbox = ({ images, activeIndex, onClose, onNavigate }) => (
-    <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="fixed inset-0 bg-black/90 z-[100] flex flex-col items-center justify-center p-4"
-        onClick={onClose}
-    >
-        <button onClick={onClose} className="absolute top-4 right-4 text-white z-20">
-            <X size={32} />
-        </button>
-        
-        <div className="relative w-full max-w-4xl h-3/4 flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
-            <AnimatePresence initial={false} custom={onNavigate.direction}>
-                <motion.img
-                    key={activeIndex}
-                    src={images[activeIndex]}
-                    custom={onNavigate.direction}
-                    variants={slideVariants}
-                    initial="enter"
-                    animate="center"
-                    exit="exit"
-                    transition={{
-                        x: { type: 'tween', duration: 0.3, ease: 'easeInOut' },
-                        opacity: { duration: 0.2 },
-                    }}
-                    className="max-h-full max-w-full object-contain"
-                />
-            </AnimatePresence>
-             <div className="absolute inset-0 flex justify-between items-center pointer-events-none">
-                <button onClick={() => onNavigate.prev()} className="pointer-events-auto text-white bg-black/30 rounded-full p-3 hover:bg-black/50 transition-colors z-20 ml-4">
-                    <ChevronLeft size={32} />
-                </button>
-                <button onClick={() => onNavigate.next()} className="pointer-events-auto text-white bg-black/30 rounded-full p-3 hover:bg-black/50 transition-colors z-20 mr-4">
-                    <ChevronRight size={32} />
-                </button>
-            </div>
-        </div>
-
-        <div className="flex space-x-2 p-4 overflow-x-auto mt-4" onClick={(e) => e.stopPropagation()}>
-            {images.map((img, idx) => (
-                <img
-                    key={idx}
-                    src={img}
-                    onClick={() => onNavigate.to(idx)}
-                    className={`w-20 h-14 object-cover rounded cursor-pointer transition-all ${
-                        activeIndex === idx ? 'ring-2 ring-white scale-105' : 'opacity-60 hover:opacity-100'
-                    }`}
-                    loading="lazy"
-                />
-            ))}
-        </div>
-    </motion.div>
-);
-
 const TabButton = React.memo<{ name: string; activeTab: string; onClick: () => void }>(({ name, activeTab, onClick }) => {
     const isActive = activeTab === name.toLowerCase();
     return (
@@ -362,48 +316,36 @@ const TabButton = React.memo<{ name: string; activeTab: string; onClick: () => v
 });
 
 
-const MediaGallery = ({ images, videos, deptoName }) => {
+const MediaGallery = ({ images, videos, deptoName, photoCategories }) => {
     const [activeTab, setActiveTab] = useState('fotos');
-    const [[page, direction], setPage] = useState([0, 0]);
+    const [lightboxIndex, setLightboxIndex] = useState(0);
     const [isLightboxOpen, setLightboxOpen] = useState(false);
+    const [showAllPhotos, setShowAllPhotos] = useState(false);
     const [isPlaying, setIsPlaying] = useState(false);
     const [isMuted, setIsMuted] = useState(true);
     const [volume, setVolume] = useState(0.8);
     const playerRef = useRef(null);
 
-    useEffect(() => {
-        if (isLightboxOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'auto';
-        }
-        return () => {
-            document.body.style.overflow = 'auto';
-        };
-    }, [isLightboxOpen]);
-
-    const wrap = (min, max, v) => {
-        const rangeSize = max - min;
-        return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min;
-    };
-    
-    const imageIndex = wrap(0, images.length, page);
-
-    const paginate = (newDirection: number) => {
-        setPage([page + newDirection, newDirection]);
-    };
-    
-    const paginateTo = (newIndex: number) => {
-        const newDirection = newIndex > imageIndex ? 1 : -1;
-        setPage([newIndex, newDirection]);
-    }
+    // Crear lista plana de todas las fotos para el lightbox
+    const allPhotos = photoCategories 
+        ? photoCategories.flatMap(cat => cat.photos)
+        : images;
 
     const openLightbox = (index: number) => {
-        setPage([index, 0]);
+        setLightboxIndex(index);
         setLightboxOpen(true);
     };
     
+    const openLightboxFromModal = (index: number) => {
+        setLightboxIndex(index);
+        setLightboxOpen(true);
+        // No cerrar el modal, mantenerlo abierto en el fondo
+    };
+    
     const closeLightbox = () => setLightboxOpen(false);
+    
+    const openAllPhotos = () => setShowAllPhotos(true);
+    const closeAllPhotos = () => setShowAllPhotos(false);
 
     const togglePlay = () => {
         if (playerRef.current) {
@@ -450,12 +392,13 @@ const MediaGallery = ({ images, videos, deptoName }) => {
 
     return (
         <div className="select-none">
-            <div className="flex items-center space-x-2 mb-4 bg-secondary/50 p-1 rounded-lg w-full md:w-auto md:inline-flex">
-                <TabButton name="Fotos" activeTab={activeTab} onClick={() => setActiveTab('fotos')} />
-                {videos && videos.length > 0 && (
+            {/* Tab Buttons para Fotos/Videos */}
+            {videos && videos.length > 0 && (
+                <div className="flex items-center space-x-2 mb-4 p-1 rounded-lg w-full md:w-auto md:inline-flex" style={{ backgroundColor: 'rgba(241, 218, 191, 0.3)' }}>
+                    <TabButton name="Fotos" activeTab={activeTab} onClick={() => setActiveTab('fotos')} />
                     <TabButton name="Videos" activeTab={activeTab} onClick={() => setActiveTab('videos')} />
-                )}
-            </div>
+                </div>
+            )}
             
             <AnimatePresence mode="wait">
                 <motion.div
@@ -467,64 +410,95 @@ const MediaGallery = ({ images, videos, deptoName }) => {
                 >
                     {activeTab === 'fotos' ? (
                         <div>
-                           <div className="relative w-full h-80 md:h-[500px] rounded-lg overflow-hidden shadow-lg group">
-                                <AnimatePresence initial={false} custom={direction}>
-                                    <motion.img
-                                        key={page}
-                                        src={images[imageIndex]}
-                                        alt={`Vista ${imageIndex + 1} de ${deptoName}`}
-                                        custom={direction}
-                                        variants={slideVariants}
-                                        initial="enter"
-                                        animate="center"
-                                        exit="exit"
-                                        transition={{
-                                            x: { type: "spring", stiffness: 300, damping: 30 },
-                                            opacity: { duration: 0.2 }
-                                        }}
-                                        drag="x"
-                                        dragConstraints={{ left: 0, right: 0 }}
-                                        dragElastic={1}
-                                        onDragEnd={(e, { offset, velocity }) => {
-                                            const swipe = Math.abs(offset.x) * velocity.x;
-                                            if (swipe < -10000) {
-                                                paginate(1);
-                                            } else if (swipe > 10000) {
-                                                paginate(-1);
-                                            }
-                                        }}
-                                        className="absolute w-full h-full object-cover cursor-pointer"
-                                        onClick={() => openLightbox(imageIndex)}
-                                    />
-                                </AnimatePresence>
-
-                                <div className="absolute top-1/2 -translate-y-1/2 left-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <button onClick={() => paginate(-1)} className="bg-black/40 text-white rounded-full p-2 hover:bg-black/60 focus:outline-none">
-                                        <ChevronLeft size={24} />
-                                    </button>
-                                </div>
-                                <div className="absolute top-1/2 -translate-y-1/2 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <button onClick={() => paginate(1)} className="bg-black/40 text-white rounded-full p-2 hover:bg-black/60 focus:outline-none">
-                                        <ChevronRight size={24} />
-                                    </button>
-                                </div>
-                            </div>
-                            <div className="relative mt-4">
-                                <div className="flex space-x-2 overflow-x-auto pb-2 scrollbar-hide">
-                                    {images.map((img, idx) => (
-                                        <motion.div
+                            {/* Grilla de fotos estilo Airbnb - Desktop: Horizontal, Mobile: Vertical */}
+                            <div className="relative rounded-xl overflow-hidden shadow-lg">
+                                {/* Layout Desktop (md+): Horizontal - 2 cols principal + 2x2 grid */}
+                                <div className="hidden md:grid md:grid-cols-4 md:grid-rows-2 gap-2 h-[500px]">
+                                    {/* Imagen principal - ocupa 2 columnas y 2 filas */}
+                                    <div 
+                                        className="col-span-2 row-span-2 cursor-pointer overflow-hidden group"
+                                        onClick={() => openLightbox(0)}
+                                    >
+                                        <img 
+                                            src={allPhotos[0]} 
+                                            alt={`${deptoName} - Foto principal`}
+                                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                        />
+                                    </div>
+                                    
+                                    {/* 4 fotos pequeñas en grid */}
+                                    {allPhotos.slice(1, 5).map((photo, idx) => (
+                                        <div 
                                             key={idx}
-                                            whileHover={{ scale: 1.05 }}
-                                            className={`flex-shrink-0 cursor-pointer rounded-md overflow-hidden ring-2 transition-all ${imageIndex === idx ? 'ring-primary' : 'ring-transparent'}`}
-                                            onClick={() => paginateTo(idx)}
+                                            className="col-span-1 row-span-1 cursor-pointer overflow-hidden group relative"
+                                            onClick={() => openLightbox(idx + 1)}
                                         >
-                                            <img src={img} alt={`Thumbnail ${idx + 1}`} className="w-20 h-14 object-cover" loading="lazy" />
-                                        </motion.div>
+                                            <img 
+                                                src={photo} 
+                                                alt={`${deptoName} - Foto ${idx + 2}`}
+                                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                            />
+                                            {/* Overlay en la última foto con contador */}
+                                            {idx === 3 && allPhotos.length > 5 && (
+                                                <div className="absolute inset-0 flex items-center justify-center" style={{ backgroundColor: 'rgba(74, 74, 74, 0.6)' }}>
+                                                    <span className="text-white font-bold text-lg">+{allPhotos.length - 5} más</span>
+                                                </div>
+                                            )}
+                                        </div>
                                     ))}
                                 </div>
-                                {/* Gradientes para indicar scroll */}
-                                <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-black/20 to-transparent pointer-events-none" />
-                                <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-black/20 to-transparent pointer-events-none" />
+
+                                {/* Layout Mobile: Vertical - 1 grande arriba + 2x2 grid abajo */}
+                                <div className="grid md:hidden grid-cols-2 gap-2">
+                                    {/* Imagen principal - ocupa 2 columnas */}
+                                    <div 
+                                        className="col-span-2 h-[250px] cursor-pointer overflow-hidden group"
+                                        onClick={() => openLightbox(0)}
+                                    >
+                                        <img 
+                                            src={allPhotos[0]} 
+                                            alt={`${deptoName} - Foto principal`}
+                                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                        />
+                                    </div>
+                                    
+                                    {/* 4 fotos en grid 2x2 */}
+                                    {allPhotos.slice(1, 5).map((photo, idx) => (
+                                        <div 
+                                            key={idx}
+                                            className="h-[120px] cursor-pointer overflow-hidden group relative"
+                                            onClick={() => openLightbox(idx + 1)}
+                                        >
+                                            <img 
+                                                src={photo} 
+                                                alt={`${deptoName} - Foto ${idx + 2}`}
+                                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                            />
+                                            {/* Overlay en la última foto con contador */}
+                                            {idx === 3 && allPhotos.length > 5 && (
+                                                <div className="absolute inset-0 flex items-center justify-center" style={{ backgroundColor: 'rgba(74, 74, 74, 0.6)' }}>
+                                                    <span className="text-white font-bold">+{allPhotos.length - 5}</span>
+                                                </div>
+                                            )}
+                                        </div>
+                                    ))}
+                                </div>
+                                
+                                {/* Botón "Ver todas las fotos" - Diseño según design system */}
+                                <motion.button
+                                    onClick={openAllPhotos}
+                                    whileHover={{ scale: 1.05, y: -2 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="absolute bottom-4 right-4 font-bold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition-all flex items-center gap-2 uppercase text-sm"
+                                    style={{ 
+                                        backgroundColor: '#E6A4B4',
+                                        color: '#4A4A4A',
+                                        borderRadius: '8px'
+                                    }}
+                                >
+                                    <Grid3x3 size={18} />
+                                    Ver todas ({allPhotos.length})
+                                </motion.button>
                             </div>
                         </div>
                     ) : (
@@ -614,21 +588,135 @@ const MediaGallery = ({ images, videos, deptoName }) => {
                 </motion.div>
             </AnimatePresence>
 
+            {/* Modal de todas las fotos con categorías */}
             <AnimatePresence>
-                {isLightboxOpen && activeTab === 'fotos' && (
-                    <Lightbox
-                        images={images}
-                        activeIndex={imageIndex}
-                        onClose={closeLightbox}
-                        onNavigate={{
-                            next: () => paginate(1),
-                            prev: () => paginate(-1),
-                            to: paginateTo,
-                            direction: direction
-                        }}
-                    />
+                {showAllPhotos && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-50 overflow-y-auto"
+                        style={{ backgroundColor: '#FDF8F0' }}
+                    >
+                        <div className="sticky top-0 z-10 shadow-md" style={{ 
+                            backgroundColor: '#FFFFFF',
+                            borderBottom: '1px solid rgba(168, 218, 220, 0.3)'
+                        }}>
+                            <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+                                <motion.button
+                                    onClick={closeAllPhotos}
+                                    whileHover={{ scale: 1.05, x: -2 }}
+                                    className="flex items-center gap-2 font-bold"
+                                    style={{ color: '#4A4A4A' }}
+                                >
+                                    <ChevronLeft size={24} />
+                                    Volver
+                                </motion.button>
+                                <h2 className="text-xl font-bold" style={{ color: '#4A4A4A' }}>
+                                    {deptoName} - Galería de fotos
+                                </h2>
+                                <div className="w-20"></div> {/* Spacer for centering */}
+                            </div>
+                        </div>
+
+                        <div className="container mx-auto px-4 py-8 max-w-6xl">
+                            {photoCategories ? (
+                                // Mostrar fotos organizadas por categorías
+                                photoCategories.map((category, catIdx) => (
+                                    <div key={catIdx} className="mb-12">
+                                        <h3 className="text-2xl font-bold mb-6 pb-2" style={{ 
+                                            color: '#4A4A4A',
+                                            borderBottom: '2px solid #A8DADC'
+                                        }}>
+                                            {category.category}
+                                        </h3>
+                                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                            {category.photos.map((photo, photoIdx) => {
+                                                const globalIndex = photoCategories
+                                                    .slice(0, catIdx)
+                                                    .reduce((acc, cat) => acc + cat.photos.length, 0) + photoIdx;
+                                                
+                                                return (
+                                                    <motion.div
+                                                        key={photoIdx}
+                                                        initial={{ opacity: 0, y: 20 }}
+                                                        animate={{ opacity: 1, y: 0 }}
+                                                        transition={{ delay: photoIdx * 0.05 }}
+                                                        className="aspect-[4/3] rounded-xl overflow-hidden cursor-pointer group shadow-md hover:shadow-xl transition-shadow"
+                                                        onClick={() => openLightboxFromModal(globalIndex)}
+                                                    >
+                                                        <img
+                                                            src={photo}
+                                                            alt={`${category.category} ${photoIdx + 1}`}
+                                                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                                                            loading="lazy"
+                                                        />
+                                                    </motion.div>
+                                                );
+                                            })}
+                                        </div>
+                                    </div>
+                                ))
+                            ) : (
+                                // Fallback: mostrar todas las fotos sin categorías
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                    {allPhotos.map((photo, idx) => (
+                                        <motion.div
+                                            key={idx}
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ delay: idx * 0.05 }}
+                                            className="aspect-[4/3] rounded-xl overflow-hidden cursor-pointer group shadow-md hover:shadow-xl transition-shadow"
+                                            onClick={() => openLightboxFromModal(idx)}
+                                        >
+                                            <img
+                                                src={photo}
+                                                alt={`Foto ${idx + 1}`}
+                                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                                                loading="lazy"
+                                            />
+                                        </motion.div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    </motion.div>
                 )}
             </AnimatePresence>
+
+            {/* Lightbox para ver fotos en pantalla completa */}
+            <Lightbox
+                open={isLightboxOpen}
+                close={closeLightbox}
+                index={lightboxIndex}
+                slides={allPhotos.map(src => ({ src }))}
+                plugins={[Thumbnails]}
+                thumbnails={{
+                    position: 'bottom',
+                    width: 120,
+                    height: 80,
+                    border: 2,
+                    borderRadius: 4,
+                    padding: 0,
+                    gap: 16,
+                    showToggle: false
+                }}
+                carousel={{
+                    finite: false,
+                    preload: 2
+                }}
+                animation={{
+                    fade: 250,
+                    swipe: 250
+                }}
+                controller={{
+                    closeOnBackdropClick: true
+                }}
+                styles={{
+                    container: { backgroundColor: 'rgba(0, 0, 0, 0.95)' },
+                    thumbnailsContainer: { backgroundColor: 'rgba(0, 0, 0, 0.8)' }
+                }}
+            />
         </div>
     );
 };
@@ -785,7 +873,8 @@ const DetailPage = ({ depto, onBack, onSelectDepto }) => {
                             <MediaGallery 
                                 images={[depto.mainImage, ...depto.gallery]} 
                                 videos={depto.videos}
-                                deptoName={depto.name} 
+                                deptoName={depto.name}
+                                photoCategories={depto.photoCategories}
                             />
                         </div>
                         <div className="lg:col-span-2">

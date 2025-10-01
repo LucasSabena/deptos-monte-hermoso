@@ -5,33 +5,81 @@ export const departments = [
     name: 'Brava',
     tagline: 'Confort, tranquilidad a pasos del mar',
     capacity: 4,
-    features: ['2 Ambientes', 'A pasos del mar', 'Balcón con parrilla'],
-    mainImage: 'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487776/Brava-0_dox87i.jpg',
+    features: ['2 Ambientes', 'A pasos del mar', 'Parrilla'],
+    mainImage: 'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487777/Brava-4_vu5gqy.jpg',
+    photoCategories: [
+      {
+        category: 'Pileta',
+        photos: ['https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487777/Brava-4_vu5gqy.jpg']
+      },
+      {
+        category: 'Ingreso y Cochera',
+        photos: ['https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487777/Brava-15_aooogc.jpg']
+      },
+      {
+        category: 'Cocina y Comedor',
+        photos: [
+          'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487775/Brava-7_rbbtsb.jpg',
+          'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487779/Brava-8_evzxhp.jpg',
+          'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487776/Brava-1_dzoyw9.jpg',
+          'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487776/Brava-6_qy2ptl.jpg',
+          'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487776/Brava-12_aozuj0.jpg',
+          'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487777/Brava-5_hluprm.jpg',
+          'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487777/Brava-11_l5cfuf.jpg',
+          'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487780/Brava-2_d2acj0.jpg',
+          'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487776/Brava-0_dox87i.jpg'
+        ]
+      },
+      {
+        category: 'Dormitorio',
+        photos: [
+          'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487780/Brava-3_xsury0.jpg',
+          'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487779/Brava-9_occhts.jpg'
+        ]
+      },
+      {
+        category: 'Baño',
+        photos: ['https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487780/Brava-13_wffq0r.jpg']
+      },
+      {
+        category: 'Lavarropas',
+        photos: ['https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487778/Brava-14_uplae7.jpg']
+      },
+      {
+        category: 'Parrilla',
+        photos: ['https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487776/Brava-10_h85uwt.jpg']
+      }
+    ],
+    // Mantener gallery para compatibilidad con formato anterior
     gallery: [
-      'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487780/Brava-13_wffq0r.jpg',
-      'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487780/Brava-2_d2acj0.jpg',
-      'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487779/Brava-8_evzxhp.jpg',
-      'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487779/Brava-9_occhts.jpg',
-      'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487778/Brava-14_uplae7.jpg',
       'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487777/Brava-15_aooogc.jpg',
-      'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487777/Brava-4_vu5gqy.jpg',
-      'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487777/Brava-11_l5cfuf.jpg',
-      'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487777/Brava-5_hluprm.jpg',
-      'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487776/Brava-6_qy2ptl.jpg',
+      'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487775/Brava-7_rbbtsb.jpg',
       'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487776/Brava-1_dzoyw9.jpg',
+      'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487779/Brava-8_evzxhp.jpg',
       'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487776/Brava-12_aozuj0.jpg',
-      'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487776/Brava-10_h85uwt.jpg',
-      'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487775/Brava-7_rbbtsb.jpg'
+      'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487776/Brava-6_qy2ptl.jpg',
+      'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487777/Brava-5_hluprm.jpg',
+      'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487777/Brava-11_l5cfuf.jpg',
+      'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487780/Brava-2_d2acj0.jpg',
+      'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487776/Brava-0_dox87i.jpg',
+      'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487780/Brava-3_xsury0.jpg',
+      'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487779/Brava-9_occhts.jpg',
+      'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487780/Brava-13_wffq0r.jpg',
+      'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487778/Brava-14_uplae7.jpg',
+      'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487776/Brava-10_h85uwt.jpg'
     ],
     videos: [],
     amenities: [
-      { icon: 'Wifi', text: 'Wi-Fi de alta velocidad' },
+      { icon: 'Wifi', text: 'Wi-Fi' },
       { icon: 'BedDouble', text: 'Cama matrimonial' },
       { icon: 'Sofa', text: 'Sofá cama para 2 personas' },
       { icon: 'Tv', text: 'Smart TV con cable' },
       { icon: 'Wind', text: 'Aire acondicionado' },
       { icon: 'CookingPot', text: 'Cocina equipada' },
-      { icon: 'Waves', text: 'Salida directa a la playa' },
+      { icon: 'Car', text: 'Cochera semi cubierta' },
+      { icon: 'Grill', text: 'Parrilla en el depto.' },
+      { icon: 'WavesLadder', text: 'Pileta' },
+      { icon: 'Washing', text: 'Lavarropas' }
     ],
     location: {
         lat: -38.9902,
@@ -43,10 +91,67 @@ export const departments = [
   {
     id: 'depto-agreste-ii',
     name: 'Agreste II',
-    tagline: 'Tranquilidad y privacidad con salida directa al mar',
+    tagline: 'Tranquilidad y privacidad a metros del mar',
     capacity: 4,
     features: ['2 Ambientes', 'Salida directa al mar', 'Cochera privada'],
     mainImage: 'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487765/AgresteII-0_w5vmwe.jpg',
+    photoCategories: [
+      {
+        category: 'Cochera e Ingreso',
+        photos: [
+          'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487765/AgresteII-17_vvbujt.jpg',
+          'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487765/AgresteII-11_g027q5.jpg'
+        ]
+      },
+      {
+        category: 'Pileta',
+        photos: [
+          'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487767/AgresteII-5_en3ewa.jpg'
+        ]
+      },
+      {
+        category: 'Parrilla y Balcón',
+        photos: [
+          'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487767/AgresteII-12_xykmpx.jpg',
+          'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487766/AgresteII-6_awkxxa.jpg',
+          'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487766/AgresteII-18_t2kbvh.jpg'
+        ]
+      },
+      {
+        category: 'Cocina y Comedor',
+        photos: [
+          'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487766/AgresteII-8_kxpkur.jpg',
+          'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487767/AgresteII-2_tizbf7.jpg',
+          'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487767/AgresteII-9_qcmwkm.jpg',
+          'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487766/AgresteII-14_pntafp.jpg',
+          'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487766/AgresteII-13_giwzai.jpg',
+          'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487765/AgresteII-0_w5vmwe.jpg',
+          'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487767/AgresteII-1_gezs5r.jpg',
+          'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487765/AgresteII-7_ncxrr3.jpg'
+        ]
+      },
+      {
+        category: 'Pasillo',
+        photos: [
+          'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487765/AgresteII-15_v02o3c.jpg'
+        ]
+      },
+      {
+        category: 'Baño',
+        photos: [
+          'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487767/AgresteII-3_i02gui.jpg',
+          'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487766/AgresteII-10_cxmyp7.jpg'
+        ]
+      },
+      {
+        category: 'Pieza',
+        photos: [
+          'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487766/AgresteII-16_yvusjy.jpg',
+          'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487767/AgresteII-4_sdqb5t.jpg'
+        ]
+      }
+    ],
+    // Mantener gallery para compatibilidad
     gallery: [
       'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487767/AgresteII-1_gezs5r.jpg',
       'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487767/AgresteII-3_i02gui.jpg',
@@ -70,13 +175,16 @@ export const departments = [
         'https://res.cloudinary.com/dzey3hyfq/video/upload/v1758488178/Agreste_videos_tilnou.mp4'
     ],
     amenities: [
-      { icon: 'Wifi', text: 'Wi-Fi de alta velocidad' },
-      { icon: 'Waves', text: 'Salida directa a la playa' },
-      { icon: 'Car', text: 'Cochera privada' },
+      { icon: 'Wifi', text: 'Wi-Fi' },
       { icon: 'BedDouble', text: 'Cama matrimonial' },
       { icon: 'Sofa', text: 'Sofá cama para 2 personas' },
-      { icon: 'Tv', text: 'Smart TV' },
-      { icon: 'CookingPot', text: 'Cocina completa' },
+      { icon: 'Tv', text: 'Smart TV con cable' },
+      { icon: 'Wind', text: 'Aire acondicionado' },
+      { icon: 'CookingPot', text: 'Cocina equipada' },
+      { icon: 'Car', text: 'Cochera semi cubierta' },
+      { icon: 'Grill', text: 'Parrilla en el depto.' },
+      { icon: 'WavesLadder', text: 'Pileta' },
+      { icon: 'Washing', text: 'Lavarropas' }
     ],
     location: {
         lat: -38.9855,

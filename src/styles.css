@@ -49,6 +49,62 @@ body {
   line-height: 1.6;
 }
 
+/* Custom styles for yet-another-react-lightbox */
+.yarl__root {
+  --yarl__color_backdrop: rgba(0, 0, 0, 0.95);
+  --yarl__color_button: rgba(168, 218, 220, 0.9);
+  --yarl__color_button_active: #A8DADC;
+  --yarl__color_button_disabled: rgba(168, 218, 220, 0.3);
+}
+
+.yarl__slide_image {
+  object-fit: contain;
+}
+
+.yarl__button {
+  transition: all 0.2s ease;
+}
+
+.yarl__button:hover {
+  transform: scale(1.1);
+}
+
+.yarl__thumbnails_thumbnail {
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  opacity: 0.6;
+}
+
+.yarl__thumbnails_thumbnail:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+.yarl__thumbnails_thumbnail_active {
+  border-color: #A8DADC !important;
+  border-width: 3px !important;
+  opacity: 1 !important;
+  box-shadow: 0 0 0 1px #A8DADC;
+}
+
+.yarl__thumbnails_container {
+  background: rgba(0, 0, 0, 0.85) !important;
+  padding: 16px 0 !important;
+}
+
+.yarl__navigation_prev,
+.yarl__navigation_next {
+  background: rgba(0, 0, 0, 0.4) !important;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.yarl__navigation_prev:hover,
+.yarl__navigation_next:hover {
+  background: rgba(0, 0, 0, 0.7) !important;
+  transform: scale(1.1);
+}
+
 /* Componentes personalizados */
 .btn-primary {
   @apply bg-accent text-text-primary font-bold uppercase py-3 px-6 rounded-lg shadow-lg shadow-accent/30;

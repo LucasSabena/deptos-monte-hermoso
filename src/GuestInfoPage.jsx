@@ -618,10 +618,26 @@ const GuestInfoPage = () => {
               </div>
             </InfoSection>
 
-            {/* Nearby Places */}
-            <InfoSection title="Lugares Cercanos" icon={MapPin}>
-              <NearbyPlaces places={guestInfo.nearbyPlaces} />
-            </InfoSection>
+            {/* Shopping Places */}
+            {guestInfo.shoppingPlaces && (
+              <InfoSection title="Para Compras" icon={MapPin}>
+                <NearbyPlaces places={guestInfo.shoppingPlaces} />
+              </InfoSection>
+            )}
+
+            {/* Dining Places */}
+            {guestInfo.diningPlaces && (
+              <InfoSection title="Para Comer" icon={MapPin}>
+                <NearbyPlaces places={guestInfo.diningPlaces} />
+              </InfoSection>
+            )}
+
+            {/* Legacy Nearby Places (for depto-brava) */}
+            {guestInfo.nearbyPlaces && (
+              <InfoSection title="Lugares Cercanos" icon={MapPin}>
+                <NearbyPlaces places={guestInfo.nearbyPlaces} />
+              </InfoSection>
+            )}
           </div>
         </div>
 

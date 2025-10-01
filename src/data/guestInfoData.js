@@ -249,33 +249,20 @@ export const guestInfoData = {
     },
     wifi: {
       network: 'Agreste_WiFi',
-      password: 'MonteAgreste2024',
-      speed: 'Fibra óptica 100 Mbps'
+      password: 'MonteAgreste2024'
     },
     appliances: [
       {
-        icon: Tv,
-        name: 'Smart TV LG',
-        instructions: 'Control remoto en mesa de centro. Para streaming, usa las apps preinstaladas.',
-        tips: 'Cuenta con Netflix, YouTube y Disney+ incluidos'
-      },
-      {
-        icon: Thermometer,
-        name: 'Aire Acondicionado Split',
-        instructions: 'Control remoto en dormitorio. Modo recomendado: AUTO a 23°C',
-        tips: 'Ventilador de techo disponible como alternativa'
+        icon: Utensils,
+        name: 'Horno y Anafe Eléctrico',
+        instructions: 'Horno y anafe eléctrico disponibles en cocina.',
+        tips: 'Ideal para cocinar todo tipo de comidas'
       },
       {
         icon: Coffee,
-        name: 'Cafetera Nespresso',
-        instructions: 'En cocina, junto a la ventana. Cápsulas disponibles en alacena.',
-        tips: 'Prende el botón y espera que la luz se ponga fija'
-      },
-      {
-        icon: Utensils,
-        name: 'Horno Eléctrico',
-        instructions: 'Perilla de temperatura y tiempo. Precalentar 10 minutos.',
-        tips: 'Ideal para pizzas y tartas. Bandeja incluida'
+        name: 'Lavarropas',
+        instructions: 'En el baño. Usar detergente líquido recomendado.',
+        tips: 'Programa delicado para ropa fina, normal para ropa de diario'
       }
     ],
     inventory: {
@@ -316,77 +303,114 @@ export const guestInfoData = {
         'Sombrilla de playa'
       ]
     },
-    nearbyPlaces: [
-      {
-        icon: UtensilsCrossed,
-        name: 'Restaurante Puerto Nuevo',
-        description: 'Especialidad en mariscos y pescados frescos del día',
-        distance: '2 cuadras',
-        hours: '12:00 - 15:00, 20:00 - 24:00'
-      },
+    shoppingPlaces: [
       {
         icon: ShoppingCart,
-        name: 'Carrefour Express',
-        description: 'Supermercado con amplia variedad y productos gourmet',
-        distance: '4 cuadras',
-        hours: '8:00 - 23:00'
-      },
-      {
-        icon: Coffee,
-        name: 'Havanna Café',
-        description: 'Famosa cadena argentina de café y alfajores',
-        distance: '3 cuadras',
+        name: 'La Cooperativa Obrera - Avenida Principal',
+        description: 'Supermercado cooperativo con productos locales',
+        url: 'https://maps.app.goo.gl/EWnejggCP3n2dACo7',
         hours: '8:00 - 22:00'
       },
       {
-        icon: TreePine,
-        name: 'Reserva Natural Pehuen-Có',
-        description: 'Área protegida con senderos y avistaje de fauna',
-        distance: '15 min en auto',
-        hours: '9:00 - 18:00'
+        icon: ShoppingCart,
+        name: 'La Cooperativa Obrera - Centro',
+        description: 'Sucursal céntrica de la cooperativa',
+        url: 'https://maps.app.goo.gl/MxZTKe8bSxVyRZAe6',
+        hours: '8:00 - 22:00'
       },
       {
-        icon: Fish,
-        name: 'Muelle de Pescadores',
-        description: 'Puerto pesquero donde llegan los barcos con pescado fresco',
-        distance: '8 cuadras',
-        hours: '6:00 - 18:00'
+        icon: ShoppingCart,
+        name: 'El Rosarino III',
+        description: 'Supermercado familiar con productos regionales',
+        url: 'https://maps.app.goo.gl/rEB12KJhvnF7e2b1A',
+        hours: '8:00 - 21:00'
       },
       {
-        icon: Building,
-        name: 'Casino Club Hotel',
-        description: 'Casino, espectáculos y gastronomía',
-        distance: '6 cuadras',
-        hours: '18:00 - 04:00'
+        icon: ShoppingCart,
+        name: 'La Ilusión',
+        description: 'Almacén y provisiones generales',
+        url: 'https://maps.app.goo.gl/b6BH6vX7uKq7yYEo6',
+        hours: '7:00 - 20:00'
       }
+    ],
+    diningPlaces: [
+      {
+        icon: UtensilsCrossed,
+        name: 'Parador Ex Espigón de Pesca y Embarcadero',
+        description: 'Restaurante con vista al mar (por cercanía)',
+        hours: '12:00 - 24:00'
+      },
+      {
+        icon: UtensilsCrossed,
+        name: 'Parador Bronx Beer Station',
+        description: 'Parador cervecero con comidas (por cercanía)',
+        hours: '18:00 - 02:00'
+      },
+      {
+        icon: UtensilsCrossed,
+        name: 'Parador La Vieja Mostro',
+        description: 'Parador tradicional (por cercanía)',
+        hours: '12:00 - 24:00'
+      },
+      {
+        icon: UtensilsCrossed,
+        name: 'Restaurante La Estación',
+        description: 'Restaurante temático ferroviario',
+        hours: '12:00 - 15:00, 20:00 - 24:00'
+      },
+      {
+        icon: UtensilsCrossed,
+        name: 'Restaurante Medio Mundo',
+        description: 'Cocina internacional y local',
+        hours: '19:00 - 01:00'
+      },
+      {
+        icon: UtensilsCrossed,
+        name: 'Restaurante La Alemana',
+        description: 'Especialidad en cocina alemana',
+        hours: '20:00 - 24:00'
+      },
+      {
+        icon: UtensilsCrossed,
+        name: 'Restaurante Bigua',
+        description: 'Mariscos y pescados frescos',
+        hours: '12:00 - 15:00, 20:00 - 24:00'
+      },
+      {
+        icon: UtensilsCrossed,
+        name: 'Parador Lupita',
+        description: 'Parador costero (por cercanía)',
+        hours: '11:00 - 23:00'
+      },
     ],
     deliveryRestaurants: [
       {
-        icon: UtensilsCrossed,
-        name: 'Pizza Express Monte Hermoso',
-        description: 'Pizzas, empanadas y comida rápida',
-        phone: '(0291) 648-1234',
-        whatsapp: '5492916481234',
-        hours: '19:00 - 00:00',
-        speciality: 'Pizzas a la parrilla'
-      },
-      {
         icon: Truck,
-        name: 'Mariscos del Puerto',
-        description: 'Pescados, mariscos y parrilladas',
-        phone: '(0291) 648-5678',
-        whatsapp: '5492916485678',
-        hours: '12:00 - 15:00, 20:00 - 24:00',
-        speciality: 'Pescado fresco del día'
+        name: 'Faster Delivery',
+        description: 'App de delivery con múltiples opciones',
+        phone: '',
+        whatsapp: '',
+        hours: 'Varía según restaurante',
+        speciality: 'Plataforma de delivery',
+        url: 'https://fasterdelivery.com.ar/'
       },
       {
-        icon: Coffee,
-        name: 'Hamburguesería del Faro',
-        description: 'Hamburguesas gourmet, papas y bebidas',
-        phone: '(0291) 648-9999',
-        whatsapp: '5492916489999',
-        hours: '18:00 - 02:00',
-        speciality: 'Hamburguesas artesanales'
+        icon: UtensilsCrossed,
+        name: 'Monchito',
+        description: 'Rotiseria, empanadas, pizza, bebidas y más',
+        phone: '',
+        whatsapp: '',
+        hours: 'Consultar disponibilidad',
+        speciality: 'Comida casera y rotiseria'
+      },
+      {
+        icon: UtensilsCrossed,
+        name: 'Planeta Empanadas Monte Hermoso',
+        description: 'Empanadas y pizza',
+        phone: '',
+        whatsapp: '',
+        hours: 'Consultar disponibilidad',
+        speciality: 'Empanadas artesanales'
       }
     ],
     checkInOut: {
@@ -394,26 +418,15 @@ export const guestInfoData = {
         time: '15:00',
         procedure: [
           'Llegada partir de las 15:00 hs',
-          'Contactar a Valeria 30 min antes',
-          'Recibimiento en el departamento',
-          'Entrega de llaves y explicación',
-          'Tour rápido de instalaciones',
-          'Explicación del portón automático'
+          'Llave en caja de seguridad'
         ]
       },
       checkOut: {
         time: '11:00',
         procedure: [
-          'Salida hasta las 11:00 hs',
-          'Dejar llaves en mesa de entrada',
-          'Dejar control de cochera',
-          'Reportar cualquier problema',
-          'Check-out flexible disponible (consultar)',
-          'Contactar a Valeria al partir'
+          'Salida hasta las 11:00 hs'
         ]
-      },
-      earlyCheckIn: 'Disponible desde las 12:00 (sujeto a disponibilidad)',
-      lateCheckOut: 'Hasta las 14:00 con cargo adicional'
+      }
     },
     contacts: [
       {
@@ -421,23 +434,6 @@ export const guestInfoData = {
         phone: '+5492916480599',
         whatsapp: '5492916480599',
         description: 'Para cualquier consulta sobre el departamento'
-      },
-      {
-        name: 'Emergencias Médicas',
-        phone: '107',
-        emergencyOnly: true,
-        description: 'Ambulancia y emergencias médicas'
-      },
-      {
-        name: 'Policía',
-        phone: '911',
-        emergencyOnly: true,
-        description: 'Emergencias policiales'
-      },
-      {
-        name: 'Hospital Municipal',
-        phone: '+54291648-2180',
-        description: 'Hospital más cercano'
       }
     ],
     quickAccess: [
@@ -459,13 +455,7 @@ export const guestInfoData = {
         icon: Car,
         title: 'Cochera',
         subtitle: 'Acceso privado',
-        onClick: () => alert('Cochera privada incluida.\\nPortón automático - Control en el depto.')
-      },
-      {
-        icon: Lightbulb,
-        title: 'Emergencia',
-        subtitle: 'Números útiles',
-        onClick: () => alert('Emergencias:\\n• Ambulancia: 107\\n• Policía: 911\\n• Hospital: (0291) 648-2180')
+        onClick: () => alert('Cochera al frente, la segunda de derecha a izquierda, PA2')
       }
     ]
   }
