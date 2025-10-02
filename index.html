@@ -67,6 +67,45 @@
     <link rel="preload" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap"></noscript>
 
+    <!-- Tailwind CSS - Must load immediately for styles -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#A8DADC',
+              secondary: '#F1DABF',
+              accent: '#E6A4B4',
+              background: '#FDF8F0',
+              'text-primary': '#4A4A4A',
+              'text-secondary': '#7E7E7E',
+              'card-bg': '#FFFFFF',
+            },
+            fontFamily: {
+              sans: ['Satoshi', 'sans-serif'],
+              headings: ['Satoshi', 'sans-serif'],
+            },
+            spacing: {
+                'xs': '4px',
+                'sm': '8px',
+                'md': '16px',
+                'lg': '32px',
+                'xl': '64px',
+            }
+          }
+        }
+      }
+    </script>
+
+    <!-- Scripts - Core React must load immediately -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
+    <!-- UI Libraries can be deferred -->
+    <script src="https://unpkg.com/framer-motion@10/dist/framer-motion.umd.js" defer></script>
+    <script src="https://unpkg.com/lucide-react@0.323.0/dist/lucide-react.js" defer></script>
+
     <!-- Structured Data -->
     <script type="application/ld+json">
     {
