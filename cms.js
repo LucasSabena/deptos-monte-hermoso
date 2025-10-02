@@ -94,7 +94,7 @@ export const departments = [
     tagline: 'Tranquilidad y privacidad a metros del mar',
     capacity: 4,
     features: ['2 Ambientes', 'Salida directa al mar', 'Cochera privada'],
-    mainImage: 'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487765/AgresteII-0_w5vmwe.jpg',
+    mainImage: 'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487765/AgresteII-11_g027q5.jpg',
     photoCategories: [
       {
         category: 'Cochera e Ingreso',
@@ -146,7 +146,7 @@ export const departments = [
       {
         category: 'Pieza',
         photos: [
-          'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487766/AgresteII-16_yvusjy.jpg',
+          'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487766/AgresteII-16_eo4sja.jpg',
           'https://res.cloudinary.com/dzey3hyfq/image/upload/v1758487767/AgresteII-4_sdqb5t.jpg'
         ]
       }
