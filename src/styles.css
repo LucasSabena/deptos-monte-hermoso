@@ -1,9 +1,9 @@
 /* Custom CSS para el proyecto */
 @import url('https://fonts.googleapis.com/css2?family=Satoshi:wght@400;500;700&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@reference "../tailwind.config.js";
 
 /* Scrollbar personalizado */
 .scrollbar-hide {
@@ -107,14 +107,29 @@ body {
 
 /* Componentes personalizados */
 .btn-primary {
-  @apply bg-accent text-text-primary font-bold uppercase py-3 px-6 rounded-lg shadow-lg shadow-accent/30;
-  @apply hover:scale-105 hover:-translate-y-1 transition-all duration-200;
+  background-color: #E6A4B4;
+  color: #4A4A4A;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(230, 164, 180, 0.3);
+}
+
+.btn-primary:hover {
+  transform: scale(1.05) translateY(-0.25rem);
+  transition: all 200ms;
 }
 
 .card {
-  @apply bg-white rounded-xl shadow-lg shadow-secondary/20 p-6;
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgba(241, 218, 191, 0.2);
+  padding: 1.5rem;
 }
 
-.input-focus {
-  @apply focus:ring-2 focus:ring-primary focus:border-primary outline-none;
+.input-focus:focus {
+  outline: 2px solid #A8DADC;
+  outline-offset: 2px;
+  border-color: #A8DADC;
 }
