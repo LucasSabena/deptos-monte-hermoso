@@ -894,10 +894,6 @@ const DetailPage = ({ depto, onBack, onSelectDepto }) => {
                         <h2 className="text-3xl md:text-4xl font-bold font-headings text-center text-text-primary mb-12">Ubicación</h2>
                         <MapComponent embedSrc={depto.location.embedSrc} name={depto.name} />
                     </div>
-                    <div className="mt-12 md:mt-24 text-center">
-                        <h2 className="text-2xl md:text-3xl font-bold font-headings text-text-primary mb-8">También te puede interesar</h2>
-                        <OtherDepartmentPromo currentDepto={depto} onSelectDepto={onSelectDepto} />
-                    </div>
                 </div>
             </div>
             <ContactFooter />
