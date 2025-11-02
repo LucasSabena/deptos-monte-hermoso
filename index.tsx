@@ -17,6 +17,7 @@ import 'yet-another-react-lightbox/styles.css';
 import 'yet-another-react-lightbox/plugins/thumbnails.css';
 import './src/styles.css';
 import GuestInfoPage from './src/GuestInfoPage.jsx';
+import CalculadoraPage from './src/CalculadoraPage.jsx';
 import { Analytics } from '@vercel/analytics/react';
 
 
@@ -954,6 +955,7 @@ const App = () => {
             <AnimatePresence mode="wait">
                 <Routes>
                     <Route path="/" element={<HomePage />} />
+                    <Route path="/calculadora" element={<CalculadoraPage />} />
                     <Route path="/:id" element={<DetailPageWrapper />} />
                     <Route path="/:id/info" element={<GuestInfoPage />} />
                 </Routes>

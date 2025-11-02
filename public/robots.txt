@@ -8,6 +8,9 @@ Disallow: /api/
 # Block access to guest info pages (private links only)
 Disallow: */info
 
+# Block access to calculator (internal use only)
+Disallow: /calculadora
+
 # Allow access to CSS, JS, and image files
 Allow: *.css
 Allow: *.js
